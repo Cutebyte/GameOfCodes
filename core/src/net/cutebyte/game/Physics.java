@@ -151,6 +151,7 @@ public class Physics {
                 if(!first.getHurtLock() && !second.getHurtLock()) {
                     first.hurt(second.getAttackDmg());
                     second.hurt(first.getAttackDmg());
+                    Sounds.playHurt();
                 }
             }
         }

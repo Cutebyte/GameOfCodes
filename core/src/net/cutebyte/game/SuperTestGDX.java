@@ -20,7 +20,10 @@ public class SuperTestGDX extends ApplicationAdapter {
     @Override
 	public void create() {
 
-        renderer = new Renderer(); // here goes render thing!
+        renderer = new Renderer();
+
+        Sounds.init();
+        Sounds.playMusic();
 
         control = new Control(renderer.getCamera());
         renderer.connectControl(control);
@@ -38,6 +41,7 @@ public class SuperTestGDX extends ApplicationAdapter {
             public Void call() throws Exception {
                 if (!control.getButton(5).isLocked()) {
                     control.getControlled().attack();
+                    Sounds.playFire();
                     control.getButton(5).lock();
                 }
                 return null;
@@ -94,6 +98,13 @@ public class SuperTestGDX extends ApplicationAdapter {
         renderer.render();
         rules();
 	}
+
+    @Override
+    public void dispose() {
+        super.dispose();
+
+        Sounds.dispose();
+    }
 
     public void rules() {
         if(!player.isLiving()) {

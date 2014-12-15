@@ -59,7 +59,8 @@ public class Renderer {
         for (Iterator<Entity> itr = renderList.iterator(); itr.hasNext(); ) {
             temp = itr.next();
             tint = (float)(256-getDistance(cameraFocus, temp))/256;
-            if(tint>=0) {
+            if(tint>=-0.2) {
+                if (tint < 0) tint = 0;
                 spriteBatch.setColor(tint, tint, tint, 1f);
                 temp.render(spriteBatch);
                 spriteBatch.setColor(Color.WHITE);
